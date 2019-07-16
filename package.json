@@ -1,6 +1,7 @@
 {
   "name": "@lxfriday/smooth-scroll-to",
   "version": "1.0.1",
+  "private": false,
   "description": "smooth scroll to somewhere",
   "main": "src/index.js",
   "scripts": {
