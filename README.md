@@ -1,88 +1,59 @@
-# countdown
+# @lxfriday/smooth-scroll-to
 
-javascript auto countdown util class
+javascript scroll for anywhere
 
 ## install
 
 ```bash
-npm i @lxfriday/countdown -S
+npm i @lxfriday/smooth-scroll-to -S
 # or
-yarn add @lxfriday/countdown
+yarn add @lxfriday/smooth-scroll-to
 ```
 
 ## params
+`smoothScrollTo(ref, pos[, rate])`
 
-### `constructor`
-
-- `leftTime` `{number}` `required` time(second) left for countdown
-- `i` `{number}` period time(second) to execute `onDown`
-
-### `CountDown.prototype.onDown`
-called every period, hack func
-
-```js
-// use
-
-CountDown.prototype.onDown = function (leftTime) {
-    console.log(leftTime);
-}
-
-```
-
-### `CountDown.prototype.start`
-start countdown
-
-### `CountDown.prototype.pause`
-pause countdown temporarily
-
-### `CountDown.prototype.stop`
-stop countdown
-
-### `CountDown.prototype.reset`
-reset the available time to initial time
-
-### `CountDown.prototype.restart`
-restart countdown using the initial leftTime
+- `ref` {`HTMLElement`} `required`, the component you want to scroll
+- `pos` {`number`} `required`, the component you want to scroll
+- `rate` {`numbger`} scroll speed, bigger means faster
 
 ## usage
+// use in react
 
-```js
-var CountDown = require('@lxfriday/countdown');
+```jsx harmony
+import React, { Component } from 'react';
+import smoothScrollTo from '@lxfriday/smooth-scroll-to';
 
-var countdown1 = new CountDown(180);
-countdown1.onDown = function (leftTime) {
-    console.log('time now left: ' + leftTime + ' second(s)');
+class Scroll extends Component {
+  handleScroll = () => {
+    smoothScrollTo(this.scroll, 1000)
+  }
+  
+  render() {
+    return (
+      <div ref={r => (this.scroll = r)} style={{ height: 700 }}>
+        <button onClick={this.handleScroll}>scroll go</button>
+        <div style={{ height: 5000 }}>
+          <div style={{ height: 300, backgroundColor: 'red' }} />
+          <div style={{ height: 300, backgroundColor: 'green' }} />
+          <div style={{ height: 300, backgroundColor: 'yellow' }} />
+          <div style={{ height: 300, backgroundColor: 'red' }} />
+          <div style={{ height: 300, backgroundColor: 'green' }} />
+          <div style={{ height: 300, backgroundColor: 'yellow' }} />
+          <div style={{ height: 300, backgroundColor: 'red' }} />
+          <div style={{ height: 300, backgroundColor: 'green' }} />
+          <div style={{ height: 300, backgroundColor: 'yellow' }} />
+          <div style={{ height: 300, backgroundColor: 'red' }} />
+          <div style={{ height: 300, backgroundColor: 'green' }} />
+          <div style={{ height: 300, backgroundColor: 'yellow' }} />
+          <div style={{ height: 300, backgroundColor: 'red' }} />
+          <div style={{ height: 300, backgroundColor: 'green' }} />
+          <div style={{ height: 300, backgroundColor: 'yellow' }} />
+        </div>
+      </div>
+    )
+  }
 }
-
-countdown1.start();
-
-// time now left: 179 seconds(s)
-// time now left: 178 seconds(s)
-// time now left: 177 seconds(s)
-// time now left: 176 seconds(s)
-
-countdown1.pause(); // temporarily pause
-
-countdown1.start();
-
-// time now left: 175 seconds(s)
-// time now left: 174 seconds(s)
-
-countdown1.stop(); // now stoped
-
-// if you want to restart, call reset and start
-
-countdown1.reset();
-countdown1.start();
-
-// 179
-// 178 ...
-
-// or call restart
-
-countdown1.restart();
-
-// 179
-// 178 ...
-
 ```
+
+
